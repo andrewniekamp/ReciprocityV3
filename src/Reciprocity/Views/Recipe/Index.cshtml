@@ -1,18 +1,15 @@
-﻿@model IEnumerable<Reciprocity.Models.Recipe>
+﻿@{
+    ViewData["Title"] = "Recipes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Reciprocity.Models.Recipe>
 
-<html>
-<head>
-    <title>List of Things</title>
-</head>
-<body>
-    <h2>List of things:</h2>
-    <h4>@Html.DisplayNameFor(model => model.Title)</h4>
-    <ul>
-        @foreach (var recipe in Model)
-        {
-            <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId }) | @Html.ActionLink("Edit", "Edit", new { id = recipe.RecipeId }) | @Html.ActionLink("Delete", "Delete", new { id = recipe.RecipeId })</li>
-        }
-    </ul>
-    <p>@Html.ActionLink("Add new recipe", "Create")</p>
-</body>
-</html>
+<h2>List of things:</h2>
+<h4>@Html.DisplayNameFor(model => model.Title)</h4>
+<ul>
+    @foreach (var recipe in Model)
+    {
+        <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId }) | @Html.ActionLink("Edit", "Edit", new { id = recipe.RecipeId }) | @Html.ActionLink("Delete", "Delete", new { id = recipe.RecipeId })</li>
+    }
+</ul>
+<p>@Html.ActionLink("Add new recipe", "Create")</p>

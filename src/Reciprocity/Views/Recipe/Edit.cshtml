@@ -1,24 +1,20 @@
-﻿@model Reciprocity.Models.Recipe
+﻿@{
+    ViewData["Title"] = "Edit Recipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Reciprocity.Models.Recipe
 
-<html>
-<head>
-    <title>Edit Things</title>
-</head>
-<body>
-    <h2>Edit</h2>
-    <hr />
-    <h4>Edit this recipe: @Html.DisplayFor(model => model.Title)</h4>
+<h2>Edit</h2>
+<hr />
+<h4>Edit this recipe: @Html.DisplayFor(model => model.Title)</h4>
 
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(model => model.RecipeId)
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.RecipeId)
 
-        @Html.LabelFor(model => model.Title)
-        @Html.EditorFor(model => model.Title)
+    @Html.LabelFor(model => model.Title)
+    @Html.EditorFor(model => model.Title)
 
-        <input type="submit" value="Save" />
-    }
-    <p>@Html.ActionLink("Back to recipes", "Index")</p>
-
-</body>
-</html>
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to recipes", "Index")</p>

@@ -1,13 +1,10 @@
-﻿@model Reciprocity.Models.Recipe
+﻿@{
+    ViewData["Title"] = "Recipe Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Reciprocity.Models.Recipe
 
-<html>
-<head>
-    <title>Details of Things</title>
-</head>
-<body>
-    <h2>Details</h2>
-    <hr />
-    @Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)
-    <p>@Html.ActionLink("Back to list", "Index")</p>
-</body>
-</html>
+<h2>Details</h2>
+<hr />
+@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)
+<p>@Html.ActionLink("Back to list", "Index")</p>
