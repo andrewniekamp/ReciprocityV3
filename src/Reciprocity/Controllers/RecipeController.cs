@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Reciprocity.Models;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Reciprocity.Controllers
         private ReciprocityDbContext db = new ReciprocityDbContext();
         public IActionResult Index()
         {
-            return View(db.Recipes.ToList());
+            return View(db.Recipes.Include(recipes => recipes.Category).ToList());
         }
         public IActionResult Details(int id)
         {
@@ -19,6 +20,7 @@ namespace Reciprocity.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Title");
             return View();
         }
         [HttpPost]
@@ -31,6 +33,7 @@ namespace Reciprocity.Controllers
         public IActionResult Edit(int id)
         {
             var thisRecipe = db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Title");
             return View(thisRecipe);
         }
         [HttpPost]
