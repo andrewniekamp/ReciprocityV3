@@ -2,9 +2,11 @@
     ViewData["Title"] = "Recipes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
 @model IEnumerable<Reciprocity.Models.Recipe>
 
-<h2>List of things:</h2>
+<h2>Hello @User.Identity.Name</h2>
+<h2>Here are your recipes:</h2>
 <hr />
 <table class="table">
     <tr>
