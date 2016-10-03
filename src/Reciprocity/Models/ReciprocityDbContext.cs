@@ -8,6 +8,7 @@ namespace Reciprocity.Models
 {
     public class ReciprocityDbContext : DbContext
     {
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

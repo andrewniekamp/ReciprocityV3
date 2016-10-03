@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Reciprocity.Models
 {
-    [Table("Recipes")]
-    public class Recipe
+    [Table("Categories")]
+    public class Category
     {
         [Key]
-        public int RecipeId { get; set; }
+        public int CategoryId { get; set; }
         public string Title { get; set; }
 
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public ICollection<Recipe> Recipes { get; set; }
     }
 }
