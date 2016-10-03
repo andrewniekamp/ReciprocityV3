@@ -11,5 +11,10 @@ namespace Reciprocity.Controllers
         {
             return View(db.Recipes.ToList());
         }
+        public IActionResult Details(int id)
+        {
+            var thisRecipe = db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            return View(thisRecipe);
+        }
     }
 }
