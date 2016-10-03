@@ -22,9 +22,11 @@ namespace Reciprocity.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_db.Recipes.Include(recipes => recipes.Category).ToList());
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            return View(_db.Recipes.Include(recipes => recipes.Category).Where(r => r.User.Id == currentUser.Id));
         }
         public IActionResult Details(int id)
         {
