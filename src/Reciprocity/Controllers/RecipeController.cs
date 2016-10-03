@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Reciprocity.Models;
 using System.Linq;
 
@@ -24,6 +25,18 @@ namespace Reciprocity.Controllers
         public IActionResult Create(Recipe recipe)
         {
             db.Recipes.Add(recipe);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Edit(int id)
+        {
+            var thisRecipe = db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            return View(thisRecipe);
+        }
+        [HttpPost]
+        public IActionResult Edit(Recipe recipe)
+        {
+            db.Entry(recipe).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
