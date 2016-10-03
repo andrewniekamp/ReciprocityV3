@@ -8,9 +8,9 @@
     <h2>List of things:</h2>
     <h4>@Html.DisplayNameFor(model => model.Title)</h4>
     <ul>
-        @foreach (var listItem in Model)
+        @foreach (var recipe in Model)
         {
-            <li>@Html.DisplayFor(modelItem => listItem.Title)</li>
+            <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId })</li>
         }
     </ul>
 </body>
