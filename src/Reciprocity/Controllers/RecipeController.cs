@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Reciprocity.Models;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Reciprocity.Controllers
 {
@@ -35,8 +37,11 @@ namespace Reciprocity.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Recipe recipe)
+        public async Task<IActionResult> Create(Recipe recipe)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            recipe.User = currentUser;
             _db.Recipes.Add(recipe);
             _db.SaveChanges();
             return RedirectToAction("Index");
