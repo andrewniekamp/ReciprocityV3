@@ -1,0 +1,19 @@
+﻿@model Reciprocity.Models.Recipe
+
+<html>
+<head>
+    <title>Create Things</title>
+</head>
+<body>
+    <h2>Create</h2>
+    <hr />
+    <h4>Add a new recipe</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title)
+        <input type="submit" value="Add new recipe" />
+    }
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+</body>
+</html>
