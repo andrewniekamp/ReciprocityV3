@@ -1,1 +1,17 @@
-﻿
+﻿@model IEnumerable<Reciprocity.Models.Recipe>
+
+<html>
+<head>
+    <title>List of Things</title>
+</head>
+<body>
+    <h2>List of things:</h2>
+    <h4>@Html.DisplayNameFor(model => model.Title)</h4>
+    <ul>
+        @foreach (var listItem in Model)
+        {
+            <li>@Html.DisplayFor(modelItem => listItem.Title)</li>
+        }
+    </ul>
+</body>
+</html>
