@@ -16,5 +16,16 @@ namespace Reciprocity.Controllers
             var thisRecipe = db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
             return View(thisRecipe);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Recipe recipe)
+        {
+            db.Recipes.Add(recipe);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
