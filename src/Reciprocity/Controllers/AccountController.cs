@@ -63,5 +63,12 @@ namespace Reciprocity.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
