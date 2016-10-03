@@ -40,5 +40,18 @@ namespace Reciprocity.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(int id)
+        {
+            var thisRecipe = db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            return View(thisRecipe);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisRecipe = db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            db.Recipes.Remove(thisRecipe);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
