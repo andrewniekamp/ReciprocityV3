@@ -10,7 +10,7 @@
     <ul>
         @foreach (var recipe in Model)
         {
-            <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId })</li>
+            <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId }) | @Html.ActionLink("Edit", "Edit", new { id = recipe.RecipeId }) | @Html.ActionLink("Delete", "Delete", new { id = recipe.RecipeId })</li>
         }
     </ul>
     <p>@Html.ActionLink("Add new recipe", "Create")</p>
