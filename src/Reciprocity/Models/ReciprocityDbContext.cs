@@ -8,6 +8,7 @@ namespace Reciprocity.Models
 {
     public class ReciprocityDbContext : DbContext
     {
+        public DbSet<Recipe> Recipes { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Reciprocity;Trusted_Connection=True;MultipleActiveResultSets=true");
