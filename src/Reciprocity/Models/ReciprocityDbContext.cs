@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Reciprocity.Models
 {
-    public class ReciprocityDbContext : DbContext
+    public class ReciprocityDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
