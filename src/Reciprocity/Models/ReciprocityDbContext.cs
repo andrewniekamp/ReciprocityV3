@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Reciprocity.Models
 {
@@ -10,9 +6,14 @@ namespace Reciprocity.Models
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        public ReciprocityDbContext(DbContextOptions<ReciprocityDbContext> options)
+            : base(options)
         {
-            options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Reciprocity;Trusted_Connection=True;MultipleActiveResultSets=true");
+
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
         }
     }
 }
