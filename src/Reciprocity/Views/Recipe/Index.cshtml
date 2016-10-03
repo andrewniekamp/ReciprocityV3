@@ -5,11 +5,36 @@
 @model IEnumerable<Reciprocity.Models.Recipe>
 
 <h2>List of things:</h2>
-<h4>@Html.DisplayNameFor(model => model.Title)</h4>
-<ul>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Title)
+        </th>
+        <th></th>
+    </tr>
+
     @foreach (var recipe in Model)
     {
-        <li>@Html.DisplayFor(modelItem => recipe.Title) | @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId }) | @Html.ActionLink("Edit", "Edit", new { id = recipe.RecipeId }) | @Html.ActionLink("Delete", "Delete", new { id = recipe.RecipeId })</li>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => recipe.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipe.Category.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = recipe.RecipeId }) |
+                @Html.ActionLink("Details", "Details", new { id = recipe.RecipeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = recipe.RecipeId })
+            </td>
+        </tr>
     }
-</ul>
-<p>@Html.ActionLink("Add new recipe", "Create")</p>
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+

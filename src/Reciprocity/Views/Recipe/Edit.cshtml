@@ -7,7 +7,6 @@
 <h2>Edit</h2>
 <hr />
 <h4>Edit this recipe: @Html.DisplayFor(model => model.Title)</h4>
-
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.RecipeId)
@@ -15,6 +14,9 @@
     @Html.LabelFor(model => model.Title)
     @Html.EditorFor(model => model.Title)
 
-    <input type="submit" value="Save" />
+    @Html.LabelFor(model => model.CategoryId)
+    @Html.DropDownList("CategoryId")
+
+    <input type="submit" value="Save" class="btn btn-default" />
 }
 <p>@Html.ActionLink("Back to recipes", "Index")</p>

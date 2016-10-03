@@ -4,7 +4,10 @@
 }
 @model Reciprocity.Models.Recipe
 
-<h2>Details</h2>
+<h2>Recipe Details</h2>
 <hr />
-@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)
-<p>@Html.ActionLink("Back to list", "Index")</p>
+
+<p>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</p>
+<p>@Html.DisplayNameFor(model => model.CategoryId) : @Html.DisplayFor(model => model.CategoryId)</p>
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId }) | @Html.ActionLink("Back to List", "Index")</p>
