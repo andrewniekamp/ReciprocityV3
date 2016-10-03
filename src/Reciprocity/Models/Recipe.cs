@@ -12,5 +12,6 @@ namespace Reciprocity.Models
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
