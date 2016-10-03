@@ -11,6 +11,14 @@ namespace Reciprocity.Models
         {
 
         }
+
+        public ReciprocityDbContext()
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Reciprocity;integrated security=True");
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
