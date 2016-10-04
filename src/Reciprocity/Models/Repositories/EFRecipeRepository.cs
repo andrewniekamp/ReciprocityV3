@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,23 +14,28 @@ namespace Reciprocity.Models.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                return db.Recipes;
             }
         }
 
         public Recipe Edit(Recipe recipe)
         {
-            throw new NotImplementedException();
+            db.Entry(recipe).State = EntityState.Modified;
+            db.SaveChanges();
+            return recipe;
         }
 
         public void Remove(Recipe recipe)
         {
-            throw new NotImplementedException();
+            db.Recipes.Remove(recipe);
+            db.SaveChanges();
         }
 
         public Recipe Save(Recipe recipe)
         {
-            throw new NotImplementedException();
+            db.Recipes.Add(recipe);
+            db.SaveChanges();
+            return recipe;
         }
     }
 }
