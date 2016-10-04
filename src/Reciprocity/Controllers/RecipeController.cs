@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Reciprocity.Models;
+using Reciprocity.Models.Repositories;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,11 +14,24 @@ namespace Reciprocity.Controllers
     [Authorize]
     public class RecipeController : Controller
     {
+        private IRecipeRepository recipeRepo;
         private readonly ReciprocityDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public RecipeController(ReciprocityDbContext db, UserManager<ApplicationUser> userManager)
+        //TODO: Convert db to interface for all models (currently just recipe and category)
+        public RecipeController(
+            IRecipeRepository thisRepo = null,
+            ReciprocityDbContext db, //this will be removed when the interfaces are implemented
+            UserManager<ApplicationUser> userManager)
         {
+            if (thisRepo == null)
+            {
+                recipeRepo = new EFRecipeRepository();
+            }
+            else
+            {
+                recipeRepo = thisRepo;
+            }
             _db = db;
             _userManager = userManager;
         }

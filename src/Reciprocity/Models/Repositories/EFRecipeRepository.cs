@@ -10,7 +10,7 @@ namespace Reciprocity.Models.Repositories
     {
         ReciprocityDbContext db = new ReciprocityDbContext();
 
-        public IQueryable<Recipe> Recipe
+        public IQueryable<Recipe> Recipes
         {
             get
             {
