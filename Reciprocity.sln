@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Reciprocity", "src\Reciprocity\Reciprocity.xproj", "{E0345301-2735-466D-BE89-CB71DE4902C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0B5F6D36-84B7-42C7-86A3-8C905823F609}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Reciprocity.Tests", "Reciprocity.Tests\Reciprocity.Tests.xproj", "{17BEA9A3-828B-4618-AE7B-BCFC021C208C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,16 @@ Global
 		{E0345301-2735-466D-BE89-CB71DE4902C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0345301-2735-466D-BE89-CB71DE4902C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0345301-2735-466D-BE89-CB71DE4902C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17BEA9A3-828B-4618-AE7B-BCFC021C208C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17BEA9A3-828B-4618-AE7B-BCFC021C208C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17BEA9A3-828B-4618-AE7B-BCFC021C208C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17BEA9A3-828B-4618-AE7B-BCFC021C208C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E0345301-2735-466D-BE89-CB71DE4902C5} = {2BCE1F0E-BA03-4CA1-B918-C6F926BA428E}
+		{17BEA9A3-828B-4618-AE7B-BCFC021C208C} = {0B5F6D36-84B7-42C7-86A3-8C905823F609}
 	EndGlobalSection
 EndGlobal
