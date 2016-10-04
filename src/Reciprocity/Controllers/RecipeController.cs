@@ -15,14 +15,14 @@ namespace Reciprocity.Controllers
     public class RecipeController : Controller
     {
         private IRecipeRepository recipeRepo;
-        private readonly ReciprocityDbContext _db;
+        private ICategoryRepository categoryRepo;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        //TODO: Convert db to interface for all models (currently just recipe and category)
+        //TODO: Convert db to interface for all models
         public RecipeController(
-            IRecipeRepository thisRepo = null,
-            ReciprocityDbContext db, //this will be removed when the interfaces are implemented
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ICategoryRepository thisCatRepo,
+            IRecipeRepository thisRepo = null)
         {
             if (thisRepo == null)
             {
@@ -32,24 +32,24 @@ namespace Reciprocity.Controllers
             {
                 recipeRepo = thisRepo;
             }
-            _db = db;
             _userManager = userManager;
+            categoryRepo = thisCatRepo;
         }
 
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            return View(_db.Recipes.Include(recipes => recipes.Category).Where(r => r.User.Id == currentUser.Id));
+            return View(recipeRepo.Recipes.Include(recipes => recipes.Category).Where(r => r.User.Id == currentUser.Id));
         }
         public IActionResult Details(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            var thisRecipe = recipeRepo.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
             return View(thisRecipe);
         }
         public IActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Title");
+            ViewBag.CategoryId = new SelectList(categoryRepo.Categories, "CategoryId", "Title");
             return View();
         }
         [HttpPost]
@@ -58,34 +58,31 @@ namespace Reciprocity.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             recipe.User = currentUser;
-            _db.Recipes.Add(recipe);
-            _db.SaveChanges();
+            recipeRepo.Save(recipe);
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
-            ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Title");
+            var thisRecipe = recipeRepo.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            ViewBag.CategoryId = new SelectList(categoryRepo.Categories, "CategoryId", "Title");
             return View(thisRecipe);
         }
         [HttpPost]
         public IActionResult Edit(Recipe recipe)
         {
-            _db.Entry(recipe).State = EntityState.Modified;
-            _db.SaveChanges();
+            recipeRepo.Edit(recipe);
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            var thisRecipe = recipeRepo.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
             return View(thisRecipe);
         }
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
-            _db.Recipes.Remove(thisRecipe);
-            _db.SaveChanges();
+            var thisRecipe = recipeRepo.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            recipeRepo.Remove(thisRecipe);
             return RedirectToAction("Index");
         }
     }
