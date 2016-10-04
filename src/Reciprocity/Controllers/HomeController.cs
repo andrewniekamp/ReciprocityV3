@@ -8,12 +8,12 @@ namespace Reciprocity.Controllers
 {
     public class HomeController : Controller
     {
-        private IRecipeRepository recipeRepo;
         private ICategoryRepository categoryRepo;
+        private IRecipeRepository recipeRepo;
 
         public HomeController(
-            ICategoryRepository thisCatRepo = null,
-            IRecipeRepository thisRepo = null)
+            IRecipeRepository thisRepo = null,
+            ICategoryRepository thisCatRepo = null)
         {
             if (thisRepo == null || thisCatRepo == null)
             {
