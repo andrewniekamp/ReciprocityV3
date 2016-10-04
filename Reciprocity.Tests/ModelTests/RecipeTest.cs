@@ -1,10 +1,16 @@
-﻿using Reciprocity.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Reciprocity.Controllers;
+using Reciprocity.Models;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Reciprocity.Tests
 {
     public class RecipeTest
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
         [Fact]
         public void GetTitleTest()
         {

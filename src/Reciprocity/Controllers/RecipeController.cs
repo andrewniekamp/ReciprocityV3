@@ -17,20 +17,21 @@ namespace Reciprocity.Controllers
         private IRecipeRepository recipeRepo;
         private ICategoryRepository categoryRepo;
         private readonly UserManager<ApplicationUser> _userManager;
-
-        //TODO: Convert db to interface for all models
+        
         public RecipeController(
             UserManager<ApplicationUser> userManager,
-            ICategoryRepository thisCatRepo,
+            ICategoryRepository thisCatRepo = null,
             IRecipeRepository thisRepo = null)
         {
-            if (thisRepo == null)
+            if (thisRepo == null || thisCatRepo == null)
             {
                 recipeRepo = new EFRecipeRepository();
+                categoryRepo = new EFCategoryRepository();
             }
             else
             {
                 recipeRepo = thisRepo;
+                categoryRepo = thisCatRepo;
             }
             _userManager = userManager;
             categoryRepo = thisCatRepo;
