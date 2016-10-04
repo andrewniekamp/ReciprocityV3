@@ -10,6 +10,7 @@ namespace Reciprocity.Tests
         {
             //arrange
             var recipe = new Recipe();
+            recipe.Title = "Chocolate Chip Cookies";
 
             //act
             var result = recipe.Title;
